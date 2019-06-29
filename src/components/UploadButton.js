@@ -5,7 +5,7 @@ class UploadButton extends PureComponent {
     render() {
         console.log(this.props.change)
         return (
-            <div>
+            <UpBtnStyles.Section>
                 <UpBtnStyles.Photo
                     type='file'
                     accept='image/*'
@@ -15,7 +15,7 @@ class UploadButton extends PureComponent {
                 <UpBtnStyles.PhotoBtn htmlFor='photo'>
                 snap
                 </UpBtnStyles.PhotoBtn>
-            </div>
+            </UpBtnStyles.Section>
         )
     }
 }

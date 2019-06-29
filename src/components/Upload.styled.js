@@ -5,9 +5,17 @@ const Main = styled.section`
   background: #333;
 `
 
-const Image = styled.img`
-  max-width: 90%;
-  margin-bottom: 20px;
+const Canvas = styled.canvas`
+  background: transparent;
+  display: flex;
+  width: 90%;
+  margin: 20px auto;
 `
 
-export {Main, Image}
+const Image = styled.section`
+  display: flex;
+  width: 800px;
+  margin: 20px auto;
+`
+
+export {Main, Canvas, Image}
