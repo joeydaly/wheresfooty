@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Save = styled.button`
+const Save = styled.label`
     display: inline-block;
     position: relative;
     text-transform: uppercase;

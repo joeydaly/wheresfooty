@@ -5,17 +5,14 @@ const Main = styled.section`
   background: #333;
 `
 
-const Canvas = styled.canvas`
-  background: transparent;
-  display: flex;
-  width: 90%;
-  margin: 20px auto;
+const Container = styled.section`
+  display: block;
+  width: 100%;
 `
 
-const Image = styled.section`
+const Image = styled.img`
   display: flex;
   width: 800px;
-  margin: 20px auto;
 `
 
-export {Main, Canvas, Image}
+export {Main, Container, Image}
