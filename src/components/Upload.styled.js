@@ -12,7 +12,7 @@ const Container = styled.section`
 
 const Image = styled.img`
   display: flex;
-  width: 800px;
+  max-width: 100%;
 `
 
 export {Main, Container, Image}
