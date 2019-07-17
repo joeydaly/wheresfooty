@@ -6,7 +6,6 @@ const Main = styled.section`
 `
 
 const Container = styled.section`
-  overscroll-behavior-y: contain;
   display: block;
   width: 100%;
 `

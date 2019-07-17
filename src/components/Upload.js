@@ -5,6 +5,7 @@ import UploadButton from './UploadButton'
 import Save from './Save'
 import Region from './Region'
 import RegionSelect from 'react-region-select'
+import {publish} from './Publish'
 
 class Upload extends PureComponent {
     constructor(props) {
@@ -13,6 +14,7 @@ class Upload extends PureComponent {
         this.handleChange = this.handleChange.bind(this)
         this.regionChange = this.regionChange.bind(this)
         this.regionRenderer = this.regionRenderer.bind(this)
+        this.saveFile = this.saveFile.bind(this)
         this.state = {
             region: [],
             urlFile: null,
@@ -30,7 +32,6 @@ class Upload extends PureComponent {
     }
 
     regionChange(region) {
-        console.log(region)
         this.setState({region: region})
     }
 
@@ -54,6 +55,39 @@ class Upload extends PureComponent {
                     value={regionProps.data.dataType} />
             )
         }
+    }
+
+    saveFile() {
+        let photo = this.state.rawData
+        let region = this.state.region
+
+        if (!region || region.length === 0)
+        {
+            alert('Please tell us where the footy is before uploading.')
+            return;
+        }
+
+        const uuid = require('uuid/v4')
+        let id = uuid()
+        let photoName = id + '.' + photo.name.split('.')[1]
+        let json = this.buildJson(region[0], photoName)
+        publish(photo, json, id)
+
+        this.setState({
+            region: [],
+            urlFile: null,
+            rawData: null
+        })
+    }
+
+    buildJson(region, id) {
+        let json = ['{\n"name": "' + id + '",',
+        '"top_x": ' + (region.x / 100) + ',',
+        '"top_y": ' + (region.y / 100) + ',',
+        '"bottom_x": ' + ((region.width + region.x) / 100) + ',',
+        '"bottom_y": ' + ((region.height + region.y) / 100) + '\n}'
+        ].join('\n')
+        return json
     }
     
     render() {
@@ -80,8 +114,7 @@ class Upload extends PureComponent {
 
                 {data ?
                     <Save 
-                        photo={data}
-                        region={this.state.region} />
+                        click={this.saveFile} />
                     : null
                 }
             </UploadStyles.Main>
